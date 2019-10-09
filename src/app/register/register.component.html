@@ -1,0 +1,51 @@
+<div class="container">
+    <h1>register works!</h1>
+    <hr />
+    <form [formGroup]="formUser" novalidate (ngSubmit)="registerUser()">
+        <label>Nome</label>
+        <input type="text" formControlName="name">
+
+        <label>E-mail</label>
+        <input type="text" formControlName="email">
+
+        <label>Senha</label>
+        <input type="text" formControlName="password">
+
+        <label>Data Nascimento</label>
+        <input type="text" formControlName="birthday">
+
+        <label>Endereço</label>
+        <input type="text" formControlName="address">
+
+        <label>Número</label>
+        <input type="text" formControlName="addressNumber">
+
+        <label>Complemento</label>
+        <input type="text" formControlName="complement">
+
+        <label>Telefone</label>
+        <input type="text" formControlName="phone">
+
+        <label>WhatsApp</label>
+        <input type="text" formControlName="whatsApp">
+
+
+        <div formArrayName="dependents" *ngFor="let item of formUser.get('dependents').controls; let i = index;">
+            <div [formGroupName]="i">
+                <input formControlName="name" placeholder="Nome">
+                <input formControlName="birthday" placeholder="Data Nascimento">
+            </div>
+
+        </div>
+            <label>Dependentes:</label> 
+            {{formUser.controls.dependents.controls[i].controls.name.value}}
+
+        <button type="button" (click)="addDependents(item)">Add Dependentes</button>
+
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
+
+
+</div>
